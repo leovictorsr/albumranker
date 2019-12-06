@@ -1,0 +1,35 @@
+{
+  "name": "albumranker",
+  "version": "1.0.0",
+  "description": "Create rankings of songs from albums you love",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "test",
+    "start": "./node_modules/.bin/webpack --config webpack.config.js",
+    "watch": "npm run start -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leovictorsr/albumranker.git"
+  },
+  "keywords": [
+    "albumranker",
+    "ranker"
+  ],
+  "author": "Leonardo Rodrigues",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leovictorsr/albumranker/issues"
+  },
+  "homepage": "https://github.com/leovictorsr/albumranker#readme",
+  "dependencies": {
+    "webpack": "^4.41.2",
+    "webpack-bundle-tracker": "^0.4.3"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.10"
+  }
+}
