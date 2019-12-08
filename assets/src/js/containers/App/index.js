@@ -6,7 +6,9 @@ class App extends React.Component {
     render () {
         const text = "AlbumRanker";
         return (
-            <Title text={text} />
+            <div className="container-fluid d-flex">
+                <Title text={text} />
+            </div>
         )
     }
 }

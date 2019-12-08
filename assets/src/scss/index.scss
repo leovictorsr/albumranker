@@ -1,1 +1,18 @@
 @import "./title";
+
+html, body {
+    height: 100%;
+}
+
+$font-family-base: "Helvetice Neue";
+
+#react-app {
+    height: 100%;
+    min-height: 100%;
+}
+
+.container-fluid {
+    background-color: dimgrey;
+    height: 100%;
+    min-height: 100%;
+}
