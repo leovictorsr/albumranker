@@ -9,10 +9,9 @@ class SearchBar extends React.Component {
     }
 
     search (event) {
-        let query = $(".form-control").val();
-        if (query) {
-            console.log(query);
-            axios.get("/api/search/{query}")
+        let q = $(".form-control").val();
+        if (q) {
+            axios.get(`/search/${q}`)
                  .then(res => console.log(res))
                  .catch(err => console.log(err));
             return;
