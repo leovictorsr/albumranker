@@ -5,6 +5,6 @@ from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', TemplateView.as_view(template_name='frontend/index.html')),
-    path('search/<str:query>', views.search),
+    path("", TemplateView.as_view(template_name="frontend/index.html")),
+    path("search/<str:query>", views.search),
 ]

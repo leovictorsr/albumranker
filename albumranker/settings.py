@@ -115,9 +115,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/assets/"
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "assets"),
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "assets"),)
 WEBPACK_LOADER = {
     "DEFAULT": {
         "BUNDLE_DIR_NAME": "dist/",
@@ -125,6 +123,4 @@ WEBPACK_LOADER = {
     }
 }
 
-CORS_ORIGIN_WHITELIST = (
-     'localhost:3000/'
- )
+CORS_ORIGIN_WHITELIST = "localhost:3000/"

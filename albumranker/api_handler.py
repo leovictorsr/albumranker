@@ -7,14 +7,11 @@ ALBUM = "album:{}"
 CLIENT_ID = "eaa4e93ebccf4467b5c4ef3e90a835b7"
 CLIENT_SECRET = "b0d2a06694294308a8706d3f9bbea5a4"
 
-spotify_ccm = SpotifyClientCredentials(
-    client_id=CLIENT_ID,
-    client_secret=CLIENT_SECRET
-)
+spotify_ccm = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT_SECRET)
 spotify = spotipy.Spotify(client_credentials_manager=spotify_ccm)
 
 
-def search (query):
+def search(query):
     albums = spotify.search(q=ALBUM.format(query), type="album")
 
     result = {}
@@ -45,10 +42,7 @@ def build_track_list(tracks):
         duration_minutes = (int(track["duration_ms"]) * 1000) // 60
         duration_seconds = int(track["duration_ms"]) * 1000 - duration_minutes * 60
         result_track = {
-            "duration_formatted": "{}:{}".format(
-                duration_minutes,
-                duration_seconds
-            ),
+            "duration_formatted": "{}:{}".format(duration_minutes, duration_seconds),
             "duration_seconds": int(track["duration_ms"]) * 1000,
             "name": track["name"],
             "preview_url": track["preview_url"],
