@@ -124,3 +124,7 @@ WEBPACK_LOADER = {
         "STATS_FILE": os.path.join(BASE_DIR, "webpack_stats.json"),
     }
 }
+
+CORS_ORIGIN_WHITELIST = (
+     'localhost:3000/'
+ )
