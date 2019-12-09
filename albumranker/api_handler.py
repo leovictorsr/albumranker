@@ -39,10 +39,10 @@ def build_album_list(albums):
 def build_track_list(tracks):
     track_list = []
     for track in tracks:
-        duration_minutes = (int(track["duration_ms"]) * 1000) // 60
-        duration_seconds = int(track["duration_ms"]) * 1000 - duration_minutes * 60
+        duration_minutes = (int(track["duration_ms"]) // 1000) // 60
+        duration_seconds = int(track["duration_ms"]) // 1000 - duration_minutes * 60
         result_track = {
-            "duration_formatted": "{}:{}".format(duration_minutes, duration_seconds),
+            "duration_formatted": "{}:{:02d}".format(duration_minutes, duration_seconds),
             "duration_seconds": int(track["duration_ms"]) * 1000,
             "name": track["name"],
             "preview_url": track["preview_url"],

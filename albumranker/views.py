@@ -3,4 +3,6 @@ from . import api_handler
 
 
 def search(request, query):
-    return HttpResponse(api_handler.search(query))
+    result = api_handler.search(query)
+    print(result)
+    return HttpResponse(result)
