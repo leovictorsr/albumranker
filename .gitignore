@@ -9,3 +9,4 @@ package-lock.json
 assets/dist/*
 webpack_stats.json
 **/*.pyc
+**/__pycache__
