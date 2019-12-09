@@ -4,8 +4,6 @@ html, body {
     height: 100%;
 }
 
-$font-family-base: "Helvetice Neue";
-
 #react-app {
     height: 100%;
     min-height: 100%;
@@ -15,4 +13,6 @@ $font-family-base: "Helvetice Neue";
     background-color: dimgrey;
     height: 100%;
     min-height: 100%;
+    align-items: center;
+    justify-content: center;
 }
