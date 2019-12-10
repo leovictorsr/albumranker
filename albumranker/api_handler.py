@@ -32,8 +32,8 @@ def search(query, type):
 
 
 def get_artist(query):
-    results = spotify.search(q=ARTIST.format(query), type='artist')
-    items = results['artists']['items']
+    results = spotify.search(q=ARTIST.format(query), type="artist")
+    items = results["artists"]["items"]
     if len(items) > 0:
         return items[0]
     else:
@@ -41,7 +41,7 @@ def get_artist(query):
 
 
 def get_artist_albums(artist):
-    return spotify.artist_albums(artist['id'], album_type='album')
+    return spotify.artist_albums(artist["id"], album_type="album")
 
 
 def build_album_list(albums):
@@ -65,7 +65,9 @@ def build_track_list(tracks):
         duration_minutes = (int(track["duration_ms"]) // 1000) // 60
         duration_seconds = int(track["duration_ms"]) // 1000 - duration_minutes * 60
         result_track = {
-            "duration_formatted": "{}:{:02d}".format(duration_minutes, duration_seconds),
+            "duration_formatted": "{}:{:02d}".format(
+                duration_minutes, duration_seconds
+            ),
             "duration_seconds": int(track["duration_ms"]) * 1000,
             "name": track["name"],
             "preview_url": track["preview_url"],
