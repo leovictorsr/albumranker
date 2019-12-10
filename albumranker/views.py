@@ -1,8 +1,7 @@
-from django.http import HttpResponse
+from django.http import JsonResponse
 from . import api_handler
 
 
-def search(request, query):
-    result = api_handler.search(query)
-    print(result)
-    return HttpResponse(result)
+def search(request, query, type):
+    result = api_handler.search(query, type)
+    return JsonResponse(result, safe=False)

@@ -4,6 +4,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 
 
 ALBUM = "album:{}"
+ARTIST = "artist:{}"
 CLIENT_ID = "eaa4e93ebccf4467b5c4ef3e90a835b7"
 CLIENT_SECRET = "b0d2a06694294308a8706d3f9bbea5a4"
 
@@ -11,14 +12,36 @@ spotify_ccm = SpotifyClientCredentials(client_id=CLIENT_ID, client_secret=CLIENT
 spotify = spotipy.Spotify(client_credentials_manager=spotify_ccm)
 
 
-def search(query):
-    albums = spotify.search(q=ALBUM.format(query), type="album")
-
+def search(query, type):
+    albums = []
     result = {}
+
+    if type == "album":
+        albums = spotify.search(q=ALBUM.format(query), type="album")["albums"]
+    elif type == "artist":
+        artist = get_artist(query)
+        if artist:
+            albums = get_artist_albums(artist)
+        else:
+            return "No artist found."
+
     if albums:
-        result = build_album_list(albums["albums"]["items"])
+        result = build_album_list(albums["items"])
         return result
     return "No album found."
+
+
+def get_artist(query):
+    results = spotify.search(q=ARTIST.format(query), type='artist')
+    items = results['artists']['items']
+    if len(items) > 0:
+        return items[0]
+    else:
+        return None
+
+
+def get_artist_albums(artist):
+    return spotify.artist_albums(artist['id'], album_type='album')
 
 
 def build_album_list(albums):

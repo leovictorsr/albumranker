@@ -5,14 +5,18 @@ html, body {
 }
 
 #react-app {
-    height: 100%;
     min-height: 100%;
 }
 
 .container-fluid {
     background-color: dimgrey;
-    height: 100%;
     min-height: 100%;
-    align-items: center;
-    justify-content: center;
+    align-items: top;
+    justify-content: left;
+    flex-direction: row;
+}
+
+.card-group > .card {
+    flex: 20% !important;
+    max-width: 20% !important;
 }
