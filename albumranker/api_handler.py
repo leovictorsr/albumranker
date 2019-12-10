@@ -22,7 +22,6 @@ def search(query, type):
         artist = get_artist(query)
         if artist:
             albums = get_artist_albums(artist)
-            print(len(albums), albums)
         else:
             return "No artist found."
 
@@ -42,7 +41,7 @@ def get_artist(query):
 
 
 def get_artist_albums(artist):
-    return spotify.artist_albums(artist["id"], album_type="album", country="US")
+    return spotify.artist_albums(artist["id"], album_type="album", country="BR")
 
 
 def build_album_list(albums):
@@ -55,6 +54,7 @@ def build_album_list(albums):
             "artist": album["artists"][0]["name"],
             "name": album["name"],
             "tracks": result_tracks,
+            "total_tracks": album["total_tracks"],
         }
         album_list.append(result_album)
     return album_list
