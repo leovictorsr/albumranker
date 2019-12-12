@@ -1,14 +1,20 @@
 import React from "react";
-import TrackItem from "../TrackItem";
-import Sortable from "react-sortablejs";
+import {SortableContainer} from "react-sortable-hoc";
+import TrackItem from "../../components/TrackItem";
 
-const TrackList = ({tracks}) => {
-    const trackList = tracks.map((item) => <TrackItem item={item} />);
-    return (
-        <Sortable class="list-group">
-            {trackList}
-        </Sortable>
+const TrackList = SortableContainer(({tracks}) => {
+    const trackList = tracks.map(
+        (item, index) => <TrackItem key={item}
+                                    index={index}
+                                    sortIndex={index}
+                                    item={item} />
     );
-}
+
+    return (
+        <ul class="list-group">
+            {trackList}
+        </ul>
+    );
+});
 
 export default TrackList
