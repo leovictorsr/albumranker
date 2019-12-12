@@ -17,7 +17,7 @@ def search(query, type):
     result = {}
 
     if type == "album":
-        albums = spotify.search(q=ALBUM.format(query), type="album")["albums"]
+        albums = spotify.search(q=ALBUM.format(query), type="album", limit=20)["albums"]
     elif type == "artist":
         artist = get_artist(query)
         if artist:
@@ -41,7 +41,7 @@ def get_artist(query):
 
 
 def get_artist_albums(artist):
-    return spotify.artist_albums(artist["id"], album_type="album")
+    return spotify.artist_albums(artist["id"], album_type="album", country="BR")
 
 
 def build_album_list(albums):
@@ -54,6 +54,7 @@ def build_album_list(albums):
             "artist": album["artists"][0]["name"],
             "name": album["name"],
             "tracks": result_tracks,
+            "total_tracks": album["total_tracks"],
         }
         album_list.append(result_album)
     return album_list

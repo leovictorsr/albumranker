@@ -5,7 +5,7 @@ const SearchBar = ({searchAlbum, searchArtist}) => {
         <div class="input-group w-100">
             <input type="text"
                    class="form-control"
-                   placeholder="Album"
+                   placeholder="Album or artist"
                    aria-label="Album"
                    aria-describedby="search-button" />
             <div class="input-group-append">

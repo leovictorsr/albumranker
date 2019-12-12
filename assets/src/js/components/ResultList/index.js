@@ -1,8 +1,10 @@
 import React from "react";
 import ResultCard from "../ResultCard"
 
-const ResultList = ({albums}) => {
-    const albumsList = albums.map((item) => <ResultCard item={item} />);
+const ResultList = ({albums, selectAlbum}) => {
+    const albumsList = albums.map(
+        (item) => <ResultCard item={item} selectAlbum={selectAlbum}/>
+    );
     return (
         <div class="card-group">
             {albumsList}
