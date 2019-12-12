@@ -3,7 +3,8 @@ import $ from "jquery";
 import axios from "axios";
 import arrayMove from "array-move";
 
-import ResultList from "../../components/ResultList"
+import ResultList from "../../components/ResultList";
+import SaveBar from "../../components/SaveBar";
 import SearchBar from "../../components/SearchBar";
 import Title from "../../components/Title";
 import TrackList from "../../components/TrackList";
@@ -12,6 +13,7 @@ class App extends React.Component {
     constructor (props) {
         super(props);
         this.onSortEnd = this.onSortEnd.bind(this);
+        this.saveRanking = this.saveRanking.bind(this);
         this.search = this.search.bind(this);
         this.searchAlbum = this.searchAlbum.bind(this);
         this.searchArtist = this.searchArtist.bind(this);
@@ -19,6 +21,22 @@ class App extends React.Component {
         this.state = {
             albums: [],
             tracks: []
+        }
+    }
+
+    saveRanking () {
+        let handle = $(".form-control").val();
+        let ranking = {
+            tracks: this.state.tracks,
+            album: this.state.albums[0].name,
+            artist: this.state.albums[0].artist,
+            handle: handle
+        }
+        if (handle) {
+            axios.post(`/ranking/`, ranking)
+                 .then(res => {console.log("Ranking posted succesfully.")})
+                 .catch(err => console.log(err));
+            return;
         }
     }
 
@@ -67,6 +85,7 @@ class App extends React.Component {
                 <SearchBar searchAlbum={this.searchAlbum} searchArtist={this.searchArtist}/>
                 <ResultList albums={this.state.albums} selectAlbum={this.selectAlbum}/>
                 <TrackList tracks={this.state.tracks} onSortEnd={this.onSortEnd}/>
+                <SaveBar saveRanking={this.saveRanking}/>
             </div>
         )
     }
