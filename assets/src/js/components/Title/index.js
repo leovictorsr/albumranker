@@ -1,8 +1,11 @@
 import React from "react";
 
-const Title = ({text}) => {
+const Title = () => {
     return(
-        <h1 className="title">{text}</h1>
+        <h5 className="title">
+            AlbumRanker by <a href="https://github.com/leovictorsr/albumranker"
+                              target="_blank">@leovictorsr</a>
+        </h5>
     )
 }
 

@@ -1,23 +1,16 @@
 import React from "react";
 
-const SearchBar = ({searchAlbum, searchArtist}) => {
+const SearchBar = ({searchBy, text}) => {
     return(
         <div class="input-group w-100">
             <input type="text"
                    class="form-control"
-                   placeholder="Album or artist"
-                   aria-label="Album"
                    aria-describedby="search-button" />
             <div class="input-group-append">
                 <button type="button"
-                        class="btn btn-dark"
-                        onClick={searchAlbum}>
-                    Search album
-                </button>
-                <button type="button"
-                        class="btn btn-dark"
-                        onClick={searchArtist}>
-                    Search artist
+                        class="btn bg-danger font-weight-bold text-uppercase"
+                        onClick={searchBy}>
+                    Search {text}
                 </button>
             </div>
         </div>

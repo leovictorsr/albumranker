@@ -12,9 +12,8 @@ class Ranking(models.Model):
         return RANKING_STR.format(self.album, self.artist, self.handle)
 
 
-
 class Track(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
     duration = models.CharField(max_length=10)
     track_number = models.IntegerField()
     order = models.IntegerField()

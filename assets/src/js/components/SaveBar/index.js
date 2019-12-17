@@ -1,8 +1,8 @@
 import React from "react";
 
-const SearchBar = ({saveRanking}) => {
+const SaveBar = ({saveRanking}) => {
     return(
-        <div class="input-group w-100">
+        <div class="input-group w-100 invisible">
             <div class="input-group-prepend">
                 <span class="input-group-text">@</span>
             </div>
@@ -13,7 +13,7 @@ const SearchBar = ({saveRanking}) => {
                    aria-describedby="save-button" />
             <div class="input-group-append">
                 <button type="button"
-                        class="btn btn-dark"
+                        class="btn btn-dark handle-button"
                         onClick={saveRanking}>
                     Save ranking
                 </button>
@@ -22,4 +22,4 @@ const SearchBar = ({saveRanking}) => {
     )
 }
 
-export default SearchBar
+export default SaveBar
