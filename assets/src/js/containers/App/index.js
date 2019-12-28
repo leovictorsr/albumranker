@@ -5,6 +5,7 @@ import arrayMove from "array-move";
 
 import Create from "../../components/Create";
 import Landing from  "../../components/Landing";
+import Modal from "../../components/Modal";
 import ResultList from "../../components/ResultList";
 import SaveBar from "../../components/SaveBar";
 import SearchBar from "../../components/SearchBar";
@@ -24,6 +25,7 @@ class App extends React.Component {
         this.toCreate = this.toCreate.bind(this);
         this.toByAlbum = this.toByAlbum.bind(this);
         this.toByArtist = this.toByArtist.bind(this);
+        this.toLanding = this.toLanding.bind(this);
 
         this.state = {
             albums: [],
@@ -48,10 +50,11 @@ class App extends React.Component {
             artist: this.state.albums[0].artist,
             handle: handle
         };
-        console.log(ranking);
         if (handle) {
             axios.post("/ranking", ranking)
-                 .then(res => {console.log("Ranking posted succesfully.")})
+                 .then(res => {this.setState({
+                     flow: "saved",
+                 })})
                  .catch(err => console.log(err));
             return;
         }
@@ -66,13 +69,14 @@ class App extends React.Component {
     }
 
     search (type) {
-        let q = $(".form-control").val();
+        let q = $(".search-input").val();
         if (q) {
             axios.get(`/search/${q}/${type}`)
                  .then(res => {
                      this.setState({
                          albums: res.data,
                          tracks: [],
+                         flow: "search-result"
                      });
                  })
                  .catch(err => console.log(err));
@@ -84,7 +88,9 @@ class App extends React.Component {
         this.setState({
             albums: [item],
             tracks: item.tracks,
+            flow: "creating-ranking"
         });
+
     }
 
     onSortEnd (ev) {
@@ -96,6 +102,12 @@ class App extends React.Component {
     toCreate () {
         this.setState({
             flow: "create",
+        });
+    }
+
+    toLanding () {
+        this.setState({
+            flow: "landing",
         });
     }
 
@@ -120,9 +132,10 @@ class App extends React.Component {
                  && <Create byAlbum={this.toByAlbum} byArtist={this.toByArtist}/>}
                 {this.state.flow == "by-album" && <SearchBar searchBy={this.searchAlbum} text="album" />}
                 {this.state.flow == "by-artist" && <SearchBar searchBy={this.searchArtist} text="artist" />}
-                {false && <ResultList albums={this.state.albums} selectAlbum={this.selectAlbum}/>}
-                {false && <TrackList tracks={this.state.tracks} onSortEnd={this.onSortEnd}/>}
-                {false && <SaveBar saveRanking={this.saveRanking}/>}
+                {this.state.flow == "search-result" && <ResultList albums={this.state.albums} selectAlbum={this.selectAlbum}/>}
+                {this.state.flow == "creating-ranking" && <SaveBar saveRanking={this.saveRanking}/>}
+                {this.state.flow == "creating-ranking" && <TrackList tracks={this.state.tracks} onSortEnd={this.onSortEnd}/>}
+                {this.state.flow == "saved" && <Modal text="Ranking saved succesfully!" toLanding={this.toLanding}/>}
             </div>
         )
     }

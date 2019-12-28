@@ -4,7 +4,7 @@ const SearchBar = ({searchBy, text}) => {
     return(
         <div class="input-group w-100">
             <input type="text"
-                   class="form-control"
+                   class="form-control search-input"
                    aria-describedby="search-button" />
             <div class="input-group-append">
                 <button type="button"
